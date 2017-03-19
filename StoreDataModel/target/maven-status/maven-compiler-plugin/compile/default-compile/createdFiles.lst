@@ -1,0 +1,10 @@
+co\shinetech\model\Customer.class
+co\shinetech\model\PaymentMethod.class
+co\shinetech\model\Domain.class
+co\shinetech\model\LongPK.class
+co\shinetech\model\OrderItem.class
+co\shinetech\model\tool\JPAGenerator.class
+co\shinetech\model\OrderStatus.class
+co\shinetech\model\Product.class
+co\shinetech\model\Order.class
+co\shinetech\model\PK.class
