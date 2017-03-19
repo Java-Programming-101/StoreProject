@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -33,7 +34,7 @@ public class Order implements Domain<LongPK>{
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id") 
+	@JoinColumn(name="id",foreignKey=@ForeignKey(name="FK_ORDER_CUSTOMER")) 
 	private Customer customer;
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="order")
 	private List<OrderItem> items;
@@ -41,7 +42,15 @@ public class Order implements Domain<LongPK>{
 	public Order() {
 		super();
 	}
-	
+		
+	/**
+	 * @param id
+	 */
+	public Order(LongPK id) {
+		super();
+		this.id = id;
+	}
+
 	/**
 	 * Constructor with all fields.
 	 * @param id

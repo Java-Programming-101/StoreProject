@@ -68,3 +68,33 @@ drop table if exists Customer
 drop table if exists Order
 drop table if exists OrderItem
 drop table if exists Product
+alter table Order drop foreign key FK1d5hcegmladdr0qbxavsjgujb
+alter table OrderItem drop foreign key FKqq28encu5grsd4k3qdf7snn9n
+drop table if exists Customer
+drop table if exists Order
+drop table if exists OrderItem
+drop table if exists Product
+alter table Order drop foreign key FK1d5hcegmladdr0qbxavsjgujb
+alter table OrderItem drop foreign key FKqq28encu5grsd4k3qdf7snn9n
+drop table if exists Customer
+drop table if exists Order
+drop table if exists OrderItem
+drop table if exists Product
+alter table Order drop foreign key FK_ORDER_ORDERITEM
+alter table OrderItem drop foreign key FKqq28encu5grsd4k3qdf7snn9n
+drop table if exists Customer
+drop table if exists Order
+drop table if exists OrderItem
+drop table if exists Product
+alter table Order drop foreign key FK_ORDER_CUSTOMER
+alter table OrderItem drop foreign key FKqq28encu5grsd4k3qdf7snn9n
+drop table if exists Customer
+drop table if exists Order
+drop table if exists OrderItem
+drop table if exists Product
+alter table Order drop foreign key FK_ORDER_CUSTOMER
+alter table OrderItem drop foreign key FK_ORDERITEM_ORDER
+drop table if exists Customer
+drop table if exists Order
+drop table if exists OrderItem
+drop table if exists Product

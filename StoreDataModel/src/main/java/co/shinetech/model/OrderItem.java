@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,7 @@ public class OrderItem implements Domain<LongPK> {
 	private BigDecimal price;
 	private int qty;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id")
+	@JoinColumn(name="id",foreignKey=@ForeignKey(name="FK_ORDERITEM_ORDER"))
 	private Order order;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id")
