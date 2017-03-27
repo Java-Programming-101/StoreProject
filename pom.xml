@@ -8,6 +8,8 @@
 	<name>StoreApp</name>
 	<modules>
 		<module>StoreDataModel</module>
+        <module>StoreServices</module>
+		<module>StoreService</module>
 	</modules>
 	<dependencies>
 		<dependency>
