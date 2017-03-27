@@ -10,23 +10,13 @@
 		<class>co.shinetech.model.OrderItem</class>
 		<class>co.shinetech.model.Product</class>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="javax.persistence.schema-generation.database.action"
-				value="drop-and-create" />
-			<property name="javax.persistence.schema-generation.scripts.action"
-				value="drop-and-create" />
-			<property name="javax.persistence.schema-generation.create-source"
-				value="metadata" />
-			<property name="javax.persistence.schema-generation.scripts.create-target"
-				value="target/sql/create-schema.sql" />
-			<property name="javax.persistence.schema-generation.scripts.drop-target"
-				value="sampleDrop.ddl" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/storeDB?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
 			<property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="qwe123" />			
-			<property name="javax.persistence.sql-load-script-source"
-				value="insert.sql" />
+            <property name="javax.persistence.jdbc.password" value="qwe123" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />            			
 		</properties>
 	</persistence-unit>
 </persistence>

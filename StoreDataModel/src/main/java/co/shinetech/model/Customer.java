@@ -7,12 +7,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,9 +25,9 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Customer implements Domain<LongPK>{
-	@EmbeddedId
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private LongPK id;
+	private long id;
 	@Column(length=50)
 	private String name;
 	private String address;
@@ -40,7 +41,7 @@ public class Customer implements Domain<LongPK>{
 	private String phone;
 	private String email;
 	private LocalDate birthdate;
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY, mappedBy="customer")
 	private List<Order> orders;
 
 	public Customer() {
@@ -60,10 +61,9 @@ public class Customer implements Domain<LongPK>{
 	 * @param birthdate
 	 * @param orders
 	 */
-	public Customer(LongPK id, String name, String address, String zipcode, String country, String taxid, String phone,
-			String email, LocalDate birthdate, List<Order> orders) {
+	public Customer(LongPK id, String name, String address, String zipcode, String country, String taxid, String phone, String email, LocalDate birthdate, List<Order> orders) {
 		super();
-		this.id = id;
+		this.id = id.getValue();
 		this.name = name;
 		this.address = address;
 		this.zipcode = zipcode;
@@ -77,12 +77,12 @@ public class Customer implements Domain<LongPK>{
 
 	@Override
 	public LongPK getId() {
-		return id;
+		return new LongPK(id);
 	}
 
 	@Override
 	public void setId(LongPK id) {
-		this.id = id;
+		this.id = id.getValue();
 	}
 
 	public String getName() {
@@ -159,7 +159,7 @@ public class Customer implements Domain<LongPK>{
 	
 	@Override
 	public int hashCode() {
-		return id.hashCode();
+		return new LongPK(id).hashCode();
 	}
 
 	@Override

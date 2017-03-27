@@ -7,12 +7,13 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,9 +27,9 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Order implements Domain<LongPK>{
-	@EmbeddedId
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private LongPK id;
+	private long id;
 	private ZonedDateTime date;
 	private ZonedDateTime estimatedDelivery;
 	private OrderStatus orderStatus;
@@ -36,7 +37,7 @@ public class Order implements Domain<LongPK>{
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id",foreignKey=@ForeignKey(name="FK_ORDER_CUSTOMER")) 
 	private Customer customer;
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="order")
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="order")
 	private List<OrderItem> items;
 	
 	public Order() {
@@ -48,7 +49,7 @@ public class Order implements Domain<LongPK>{
 	 */
 	public Order(LongPK id) {
 		super();
-		this.id = id;
+		this.id = id.getValue();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class Order implements Domain<LongPK>{
 	public Order(LongPK id, ZonedDateTime date, ZonedDateTime estimatedDelivery, OrderStatus orderStatus,
 			PaymentMethod paymentMethod, Customer customer, List<OrderItem> items) {
 		super();
-		this.id = id;
+		this.id = id.getValue();
 		this.date = date;
 		this.estimatedDelivery = estimatedDelivery;
 		this.orderStatus = orderStatus;
@@ -74,11 +75,11 @@ public class Order implements Domain<LongPK>{
 	}
 
 	public LongPK getId() {
-		return id;
+		return new LongPK(id);
 	}
 
 	public void setId(LongPK id) {
-		this.id = id;
+		this.id = id.getValue();
 		
 	}
 
@@ -146,13 +147,13 @@ public class Order implements Domain<LongPK>{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + new LongPK(id).hashCode();
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return id.equals(obj);
+		return new LongPK(id).equals(obj);
 	}
 
 	/* (non-Javadoc)

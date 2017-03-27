@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,11 +32,12 @@ public class Product implements Domain<LongPK>{
 	private String name;
 	private BigDecimal price;
 	private int weight;
+	@Column(length=40)
 	private String barcode;
 	private int dimX;
 	private int dimY;
 	private int dimZ;
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="product")
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="product")
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
 	public Product() {

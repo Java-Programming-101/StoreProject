@@ -31,6 +31,10 @@ public class LongPK implements PK {
 		this.id = id;
 	}
 
+	public long getValue() {
+		return id;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
