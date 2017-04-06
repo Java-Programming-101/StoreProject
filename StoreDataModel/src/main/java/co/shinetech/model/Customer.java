@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /** 
- * Domain class to tranfer Customer data between layers.
+ * Domain class to transfer Customer data between layers.
  * @author rodrigo
  * @since 16/03/2017
  */

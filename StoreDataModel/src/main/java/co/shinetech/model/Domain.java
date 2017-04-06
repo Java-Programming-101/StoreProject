@@ -9,7 +9,7 @@ package co.shinetech.model;
  * @since 16/03/2017
  * @param <K>
  */
-public interface Domain <K>{
-	LongPK getId();
-	void setId(LongPK id);
+public interface Domain<K>{
+	K getId();
+	void setId(K id);
 }
