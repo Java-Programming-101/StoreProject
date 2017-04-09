@@ -29,10 +29,10 @@ public class OrderItem implements Domain<LongPK> {
 	private BigDecimal price;
 	private int qty;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id",foreignKey=@ForeignKey(name="FK_ORDERITEM_ORDER"))
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_ORDERITEM_ORDER"))
 	private Order order;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id")
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_PRODUCT_ORDERITEM"))
 	private Product product;
  
 	public OrderItem() {

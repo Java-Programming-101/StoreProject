@@ -3,21 +3,11 @@
  */
 package co.shinetech.model;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Domain class to transfer Order objects between layers.
@@ -25,17 +15,19 @@ import javax.persistence.Table;
  * @since 16/03/2017
  */
 @Entity
-@Table
+@Table(name="orders") // MySQL does not accept table called "order", it is reserved word
 public class Order implements Domain<LongPK>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private ZonedDateTime date;
-	private ZonedDateTime estimatedDelivery;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date orderDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date estimatedDelivery;
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id",foreignKey=@ForeignKey(name="FK_ORDER_CUSTOMER")) 
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_ORDER_CUSTOMER"))
 	private Customer customer;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="order")
 	private List<OrderItem> items;
@@ -62,11 +54,11 @@ public class Order implements Domain<LongPK>{
 	 * @param customer
 	 * @param items
 	 */
-	public Order(LongPK id, ZonedDateTime date, ZonedDateTime estimatedDelivery, OrderStatus orderStatus,
+	public Order(LongPK id, Date date, Date estimatedDelivery, OrderStatus orderStatus,
 			PaymentMethod paymentMethod, Customer customer, List<OrderItem> items) {
 		super();
 		this.id = id.getValue();
-		this.date = date;
+		this.orderDate = date;
 		this.estimatedDelivery = estimatedDelivery;
 		this.orderStatus = orderStatus;
 		this.paymentMethod = paymentMethod;
@@ -83,19 +75,19 @@ public class Order implements Domain<LongPK>{
 		
 	}
 
-	public ZonedDateTime getDate() {
-		return date;
+	public Date getOrderDate() {
+		return orderDate;
 	}
 
-	public void setDate(ZonedDateTime date) {
-		this.date = date;
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 
-	public ZonedDateTime getEstimatedDelivery() {
+	public Date getEstimatedDelivery() {
 		return estimatedDelivery;
 	}
 
-	public void setEstimatedDelivery(ZonedDateTime estimatedDelivery) {
+	public void setEstimatedDelivery(Date estimatedDelivery) {
 		this.estimatedDelivery = estimatedDelivery;
 	}
 
@@ -161,7 +153,7 @@ public class Order implements Domain<LongPK>{
 	 */
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", date=" + date + ", estimatedDelivery=" + estimatedDelivery + ", orderStatus="
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", estimatedDelivery=" + estimatedDelivery + ", orderStatus="
 				+ orderStatus + ", paymentMethod=" + paymentMethod + ", customer=" + customer + ", items=" + items
 				+ "]";
 	}

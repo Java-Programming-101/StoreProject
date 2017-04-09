@@ -3,11 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<name>Domain Module :: StoreDataModel</name>
 	<parent>
-		<groupId>storeapp</groupId>
+		<groupId>co.shinetech.storeapp</groupId>
 		<artifactId>storeapp</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>StoreDataModel</artifactId>
+	<groupId>co.shinetech.storeapp</groupId>
+	<artifactId>storedatamodel</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
