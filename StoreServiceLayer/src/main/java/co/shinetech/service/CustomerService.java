@@ -4,7 +4,6 @@
 package co.shinetech.service;
 
 import co.shinetech.model.Customer;
-import co.shinetech.model.LongPK;
 import co.shinetech.repository.CustomerRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
