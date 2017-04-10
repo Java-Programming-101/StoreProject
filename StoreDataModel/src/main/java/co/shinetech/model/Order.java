@@ -4,6 +4,7 @@
 package co.shinetech.model;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,6 +43,7 @@ public class Order implements Domain<LongPK>{
 	
 	public Order() {
 		super();
+		items = new ArrayList();
 	}
 		
 	/**
