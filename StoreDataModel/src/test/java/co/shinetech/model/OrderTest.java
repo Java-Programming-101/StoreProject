@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import co.shinetech.model.LongPK;
+import co.shinetech.model.Order;
+
 public class OrderTest {
 
 	@Test
