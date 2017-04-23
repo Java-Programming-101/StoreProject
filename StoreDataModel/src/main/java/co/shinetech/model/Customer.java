@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  */
 @Entity
 @Table
-public class Customer implements Domain<LongPK>{
+public class Customer implements Domain<Long>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
@@ -41,8 +41,8 @@ public class Customer implements Domain<LongPK>{
 		super();
 	}
 
-	public Customer(LongPK id) {
-		this.id = id.getValue();
+	public Customer(Long id) {
+		this.id = id;
 	}
 
 	/**
@@ -58,9 +58,9 @@ public class Customer implements Domain<LongPK>{
 	 * @param birthDate
 	 * @param orders
 	 */
-	public Customer(LongPK id, String name, String address, String zipcode, String country, String taxid, String phone, String email, Date birthDate, List<Order> orders) {
+	public Customer(Long id, String name, String address, String zipcode, String country, String taxid, String phone, String email, Date birthDate, List<Order> orders) {
 		super();
-		this.id = id.getValue();
+		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.zipcode = zipcode;
@@ -73,13 +73,13 @@ public class Customer implements Domain<LongPK>{
 	}
 
 	@Override
-	public LongPK getId() {
-		return new LongPK(id);
+	public Long getId() {
+		return id;
 	}
 
 	@Override
-	public void setId(LongPK id) {
-		this.id = id.getValue();
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

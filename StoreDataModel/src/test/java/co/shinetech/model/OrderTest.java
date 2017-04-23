@@ -4,8 +4,7 @@ import static org.junit.Assert.*;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -25,23 +24,23 @@ public class OrderTest {
 	@Test
 	public void testSetAndGetDate() {
 		ZoneId zoneId = ZoneId.of("NZ");
-		ZonedDateTime date = ZonedDateTime.of(2017, 04, 01, 12, 30, 00, 0, zoneId);
+		Calendar date = Calendar.getInstance(TimeZone.getTimeZone(zoneId));
 		String dateAsString = date.toString();
 		Order order = new Order();
 		
-		order.setDate(date);
+		order.setOrderDate(date.getTime());
 		
-		assertEquals(dateAsString, order.getDate().toString());
+		assertEquals(dateAsString, order.getOrderDate().toString());
 	}
 	
 	@Test
 	public void testSetAndGetEstimatedDeliveryDate() {
 		ZoneId zoneId = ZoneId.of("NZ");
-		ZonedDateTime deliveryDate = ZonedDateTime.of(2017, 04, 05, 12, 30, 00, 0, zoneId);
+		Calendar deliveryDate = Calendar.getInstance(TimeZone.getTimeZone(zoneId));
 		String deliveryDateAsString = deliveryDate.toString();
 		Order order = new Order();
 		
-		order.setEstimatedDelivery(deliveryDate);
+		order.setEstimatedDelivery(deliveryDate.getTime());
 		
 		assertEquals(deliveryDateAsString, order.getEstimatedDelivery().toString());
 	}
