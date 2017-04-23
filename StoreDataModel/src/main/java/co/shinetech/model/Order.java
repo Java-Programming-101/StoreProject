@@ -162,7 +162,7 @@ public class Order implements Domain<LongPK>{
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", date=" + date + ", estimatedDelivery=" + estimatedDelivery + ", orderStatus="
-				+ orderStatus + ", paymentMethod=" + paymentMethod + ", customer=" + customer + ", items=" + items
+				+ orderStatus + ", paymentMethod=" + paymentMethod + ", customer=" + customer.getName() + ", items=" + items
 				+ "]";
 	}
 }

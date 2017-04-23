@@ -4,6 +4,7 @@
 package co.shinetech.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,7 +43,7 @@ public class Customer implements Domain<LongPK>{
 	private String email;
 	private LocalDate birthdate;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY, mappedBy="customer")
-	private List<Order> orders;
+	private List<Order> orders = new ArrayList<>();
 
 	public Customer() {
 		super();
@@ -183,6 +184,6 @@ public class Customer implements Domain<LongPK>{
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", address=" + address + ", zipcode=" + zipcode + ", country="
 				+ country + ", taxid=" + taxid + ", phone=" + phone + ", email=" + email + ", birthdate=" + birthdate
-				+ ", orders=" + orders + "]";
+				+ ", orders size=" + orders.size() + "]";
 	}
 }

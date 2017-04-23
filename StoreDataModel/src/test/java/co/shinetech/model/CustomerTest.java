@@ -9,7 +9,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.junit.Test;
 
 import co.shinetech.model.Customer;
@@ -109,29 +108,26 @@ public class CustomerTest {
 	public final void testAddAndGetOrders(){
 		
 		Customer tCustomer = new Customer();
-		tCustomer.setName("John Test");
 		
 		LongPK lpk = new LongPK(4L);
-		List<Order> orders;
-		List<OrderItem> items = new ArrayList<>();
+		List<Order> orders = new ArrayList<>();
+		List<OrderItem> items = new ArrayList<>()
+				;
 		ZonedDateTime orderDate = ZonedDateTime.of(2017, 4, 10, 12, 0, 0, 0, ZoneId.of("Pacific/Auckland"));
 		ZonedDateTime estimatedDelivery = orderDate.plusDays(10);
 	
 		Order order = new Order(lpk,orderDate,estimatedDelivery,OrderStatus.PROCESSED,PaymentMethod.DEBITCARD,tCustomer,items);
-		
 		Product product = new Product(lpk,"Java Study 101",BigDecimal.valueOf(29.99),2,"Barcode",10,20,5,items);
-		
-		
-		 
-		
 		items.add(new OrderItem(lpk, BigDecimal.valueOf(29.99), 2,order,product));
+		orders.add(order);
+		
+		tCustomer.addOrders(orders);
 		
 		List<Order> result = tCustomer.getOrdersStream().collect(Collectors.toList());
-		
-		
+		String expected = order.toString() ;
 
 		
-		assertEquals(items,result);
+		assertEquals("["+expected+"]",result.toString());
 	}
 	
 	
