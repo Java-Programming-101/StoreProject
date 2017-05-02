@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Test;
@@ -26,11 +27,12 @@ public class CustomerTest {
 	@Test
 	public final void testGetAndSetId(){
 		Customer tCustomer = new Customer();
-		LongPK lpk = new LongPK(1L);
+		long id =1L;
 		
-		tCustomer.setId(lpk);
-		
-		assertEquals(lpk, tCustomer.getId());
+		 tCustomer.setId(id);
+		long customerMethod = tCustomer.getId();
+
+		assertEquals( id, customerMethod);
 		
 	}
 	
@@ -96,12 +98,12 @@ public class CustomerTest {
 	
 	@Test
 	public final void testGetAndSetBirthdate(){
-		LocalDate date = LocalDate.of(2017, 4, 10);
+		Date date = new Date(2017, 4, 10);
 		
 		Customer tCustomer = new Customer();
-		tCustomer.setBirthdate(date);
+		tCustomer.setBirthDate(date);
 		
-		assertEquals(date,tCustomer.getBirthdate());
+		assertEquals(date,tCustomer.getBirthDate());
 	}
 	
 	@Test
@@ -109,13 +111,13 @@ public class CustomerTest {
 		
 		Customer tCustomer = new Customer();
 		
-		LongPK lpk = new LongPK(4L);
+		long id = 4L;
+		LongPK lpk = new LongPK(5L);
 		List<Order> orders = new ArrayList<>();
 		List<OrderItem> items = new ArrayList<>()
 				;
-		ZonedDateTime orderDate = ZonedDateTime.of(2017, 4, 10, 12, 0, 0, 0, ZoneId.of("Pacific/Auckland"));
-		ZonedDateTime estimatedDelivery = orderDate.plusDays(10);
-	
+		Date orderDate = new Date(2017, 4, 10);
+		Date estimatedDelivery = new Date(2017, 4, 20);
 		Order order = new Order(lpk,orderDate,estimatedDelivery,OrderStatus.PROCESSED,PaymentMethod.DEBITCARD,tCustomer,items);
 		Product product = new Product(lpk,"Java Study 101",BigDecimal.valueOf(29.99),2,"Barcode",10,20,5,items);
 		items.add(new OrderItem(lpk, BigDecimal.valueOf(29.99), 2,order,product));
