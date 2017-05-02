@@ -119,7 +119,7 @@ public class OrderItem implements Domain<LongPK> {
 	 */
 	@Override
 	public String toString() {
-		return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order=" + order + ", product=" + product
+		return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order items total =" + order.getItemsStream().toArray().length + ", product=" + product
 				+ "]";
 	}
 }
