@@ -36,9 +36,6 @@ public class CustomerServiceTest {
 
 
     @Test
-    /**
-     * Test goes to backend and creates a record.
-     */
     public void createTest() throws Exception {
         Customer c = new Customer();
         c.setName("John Black");
@@ -46,9 +43,6 @@ public class CustomerServiceTest {
     }
 
     @Test
-    /**
-     * Mocked test, does not test the backend.
-     */
     public void findByIdTest() throws Exception {
         assertEquals(customerService.findById("1").getName(),"John White");
     }
