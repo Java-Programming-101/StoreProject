@@ -33,9 +33,9 @@ public class CustomerService implements Service<Customer>{
     }
 
     @Override
-    @RequestMapping(value="/findById",method=RequestMethod.GET)
+    @RequestMapping(value="/findById/{id}",method=RequestMethod.GET)
     @JsonIgnoreProperties({"orders"})
-    public @ResponseBody Customer findById(@RequestParam String id) {
+    public @ResponseBody Customer findById(@PathVariable String id) {
         return customerRepository.findOne(Long.valueOf(id));
     }
 
