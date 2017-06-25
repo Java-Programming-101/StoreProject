@@ -22,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class OrderItem implements Domain<LongPK> {
+public class OrderItem implements Domain<Long> {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
@@ -47,20 +47,20 @@ public class OrderItem implements Domain<LongPK> {
 	 * @param order
 	 * @param product
 	 */
-	public OrderItem(LongPK id, BigDecimal price, int qty, Order order, Product product) {
+	public OrderItem(Long id, BigDecimal price, int qty, Order order, Product product) {
 		super();
-		this.id = id.getValue();
+		this.id = id;
 		this.price = price;
 		this.qty = qty;
 		this.order = order;
 		this.product = product;
 	}
 
-	public LongPK getId() {
-		return new LongPK(id);
+	public Long getId() {
+		return id;
 	}
-	public void setId(LongPK id) {
-		this.id = id.getValue();
+	public void setId(Long id) {
+		this.id = id;
 	}
  	public int getQty() {
 		return qty;
@@ -81,42 +81,46 @@ public class OrderItem implements Domain<LongPK> {
 	public Order getOrder() {
 		return order;
 	}
+
 	/**
 	 * @param order the order to set
 	 */
 	public void setOrder(Order order) {
 		this.order = order;
 	}
+
 	/**
 	 * @return the product
 	 */
 	public Product getProduct() {
 		return product;
 	}
+
 	/**
 	 * @param product the product to set
 	 */
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		OrderItem orderItem = (OrderItem) o;
+
+		return id == orderItem.id;
+	}
+
 	@Override
 	public int hashCode() {
-		return new LongPK(id).hashCode();
+		return (int) (id ^ (id >>> 32));
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrderItem other = (OrderItem) obj;
-		return new LongPK(this.id).equals(other.id);
-	}
+
 	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+         * @see java.lang.Object#toString()
+         */
 	@Override
 	public String toString() {
 		return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order items total =" + order.getItemsStream().toArray().length + ", product=" + product

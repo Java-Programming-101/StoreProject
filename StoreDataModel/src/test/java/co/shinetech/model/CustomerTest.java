@@ -112,15 +112,14 @@ public class CustomerTest {
 		Customer tCustomer = new Customer();
 		
 		long id = 4L;
-		LongPK lpk = new LongPK(5L);
 		List<Order> orders = new ArrayList<>();
 		List<OrderItem> items = new ArrayList<>()
 				;
 		Date orderDate = new Date(2017, 4, 10);
 		Date estimatedDelivery = new Date(2017, 4, 20);
-		Order order = new Order(lpk,orderDate,estimatedDelivery,OrderStatus.PROCESSED,PaymentMethod.DEBITCARD,tCustomer,items);
-		Product product = new Product(lpk,"Java Study 101",BigDecimal.valueOf(29.99),2,"Barcode",10,20,5,items);
-		items.add(new OrderItem(lpk, BigDecimal.valueOf(29.99), 2,order,product));
+		Order order = new Order(5L,orderDate,estimatedDelivery,OrderStatus.PROCESSED,PaymentMethod.DEBITCARD,tCustomer,items);
+		Product product = new Product(5L,"Java Study 101",BigDecimal.valueOf(29.99),2,"Barcode",10,20,5,items);
+		items.add(new OrderItem( 5L, BigDecimal.valueOf(29.99), 2,order,product));
 		orders.add(order);
 		
 		tCustomer.addOrders(orders);
@@ -131,6 +130,4 @@ public class CustomerTest {
 		
 		assertEquals("["+expected+"]",result.toString());
 	}
-	
-	
 }

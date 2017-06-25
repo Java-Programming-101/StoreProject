@@ -17,11 +17,10 @@ public class OrderItemTest {
     @Test
     public void testGetSetID (){
         OrderItem oi = new OrderItem();
-        LongPK lpk = new LongPK(7L);
 
-        oi.setId(lpk);
+        oi.setId(7L);
 
-        assertEquals(lpk, oi.getId());
+        assertEquals(7L, oi.getId().longValue());
     }
 
     @Test
@@ -50,7 +49,7 @@ public class OrderItemTest {
 
         List<OrderItem> orderItemList = new ArrayList<>();
 
-        Order order  = new Order( new LongPK(4l), new Date(2017,05,10), new Date (2017,05,11), OrderStatus.PROCESSED,
+        Order order  = new Order( 4l, new Date(2017,05,10), new Date (2017,05,11), OrderStatus.PROCESSED,
                 PaymentMethod.CASH, new Customer(), orderItemList);
 
 
@@ -64,7 +63,7 @@ public class OrderItemTest {
         OrderItem oi = new OrderItem();
 
         Product product = new Product();
-        product.setId(new LongPK(7L));
+        product.setId(7L);
 
         oi.setProduct(product);
 

@@ -15,9 +15,9 @@ public class ProductTest {
 
 	@Test
 	public void SetAndGet_id_test() {
-		LongPK expectedId = new LongPK(1L);
+		Long expectedId = new Long(1L);
 		product.setId(expectedId);
-		LongPK acutalId = product.getId();
+		Long acutalId = product.getId();
 		assertEquals("acutal productid is wrong",expectedId,acutalId);
 	}
 	
@@ -82,7 +82,7 @@ public class ProductTest {
 		boolean isOk = true;
 		
 		List<OrderItem> orderItems = new ArrayList<OrderItem>();
-		LongPK id = new LongPK(1L);
+		Long id = new Long(1L);
 		BigDecimal price = new BigDecimal("50");
 		int qty = 2;
 		Order order = new Order(id);
@@ -100,5 +100,4 @@ public class ProductTest {
 		}
 		assertTrue("acutal productOrderItems is wrong",isOk);
 	}
-	
 }

@@ -8,15 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Domain class to transport Product object between layers.
@@ -25,10 +17,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Product implements Domain<LongPK>{
-	@EmbeddedId
+public class Product implements Domain<Long>{
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private LongPK id;
+	private long id;
 	private String name;
 	private BigDecimal price;
 	private int weight;
@@ -56,7 +48,7 @@ public class Product implements Domain<LongPK>{
 	 * @param dimZ
 	 * @param orderItems
 	 */
-	public Product(LongPK id, String name, BigDecimal price, int weight, String barcode, int dimX, int dimY, int dimZ,
+	public Product(long id, String name, BigDecimal price, int weight, String barcode, int dimX, int dimY, int dimZ,
 			List<OrderItem> orderItems) {
 		super();
 		this.id = id;
@@ -71,11 +63,12 @@ public class Product implements Domain<LongPK>{
 	}
 
 	@Override
-	public LongPK getId() {
+	public Long getId() {
 		return id;
 	}
+
 	@Override
-	public void setId(LongPK id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public int getDimX() {
@@ -138,24 +131,17 @@ public class Product implements Domain<LongPK>{
 	}
 
 	@Override
-	public int hashCode() {
-		return id.hashCode();
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Product product = (Product) o;
+
+		return id == product.id;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public int hashCode() {
+		return (int) (id ^ (id >>> 32));
 	}
 }

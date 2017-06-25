@@ -45,6 +45,10 @@ public class Customer implements Domain<Long>{
 		this.id = id;
 	}
 
+	public Customer(String name) {
+		this.name = name;
+	}
+
 	/**
 	 * Constructor with fields.
 	 * @param id
