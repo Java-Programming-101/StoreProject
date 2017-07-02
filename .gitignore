@@ -6,3 +6,6 @@ target/
 .project
 *.iml
 .project
+
+node/
+node_modules/

@@ -14,7 +14,8 @@
 	<modules>
 		<module>storedatamodel</module>
         <module>storeservicelayer</module>
-    </modules>
+		<module>storeuilayer</module>
+	</modules>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

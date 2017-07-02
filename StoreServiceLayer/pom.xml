@@ -14,10 +14,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
+        <!-- Data Module dependency -->
         <dependency>
-            <groupId>co.shinetech.storeapp</groupId>
+            <groupId>${parent.groupId}</groupId>
             <artifactId>storedatamodel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- Angular 2 module dependency -->
+        <dependency>
+            <groupId>${parent.groupId}</groupId>
+            <artifactId>storeuilayer</artifactId>
+            <version>${project.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <!-- Spring Boot -->
         <dependency>
