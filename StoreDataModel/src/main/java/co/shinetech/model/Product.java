@@ -31,6 +31,8 @@ public class Product implements Domain<Long>{
 	private int dimZ;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="product")
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+	@ManyToOne
+	Category category;
 
 	public Product() {
 		super();
@@ -128,6 +130,14 @@ public class Product implements Domain<Long>{
 	 */
 	public void addOrderItems(List<OrderItem> orderItems) {
 		this.orderItems.addAll(orderItems);
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override
