@@ -3,8 +3,6 @@
  */
 package co.shinetech.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +14,6 @@ import java.util.stream.Stream;
  * @author rodrigo
  * @since 16/03/2017
  */
-@Data
 @Entity
 @Table
 public class Customer implements Domain<Long>{
@@ -41,6 +38,7 @@ public class Customer implements Domain<Long>{
 	private List<Order> orders = new ArrayList<>();
 
 	public Customer() {
+		super();
 	}
 
 	public Customer(Long id) {
@@ -86,5 +84,106 @@ public class Customer implements Domain<Long>{
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getTaxid() {
+		return taxid;
+	}
+
+	public void setTaxid(String taxid) {
+		this.taxid = taxid;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public void addOrders(List<Order> orders) {
+		this.orders.addAll(orders);
+	}
+
+	public Stream<Order> getOrdersStream() {
+		return orders.stream();
+	}
+
+	@Override
+	public int hashCode() {
+		return new LongPK(id).hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", address=" + address + ", zipcode=" + zipcode + ", country="
+				+ country + ", taxid=" + taxid + ", phone=" + phone + ", email=" + email + ", birthDate=" + birthDate
+				+ ", orders=" + orders + "]";
 	}
 }

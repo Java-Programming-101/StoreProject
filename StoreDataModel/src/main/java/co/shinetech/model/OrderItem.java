@@ -3,8 +3,6 @@
  */
 package co.shinetech.model;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -22,7 +20,6 @@ import javax.persistence.Table;
  * @author rodrigo
  * @since 16/03/2017
  */
-@Data
 @Entity
 @Table
 public class OrderItem implements Domain<Long> {
@@ -59,13 +56,74 @@ public class OrderItem implements Domain<Long> {
 		this.product = product;
 	}
 
-	@Override
 	public Long getId() {
 		return id;
 	}
-
-	@Override
 	public void setId(Long id) {
 		this.id = id;
+	}
+ 	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	public BigDecimal getPrice() {
+		return price;
+	}
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	/**
+	 * @return the order
+	 */
+	public Order getOrder() {
+		return order;
+	}
+
+	/**
+	 * @param order the order to set
+	 */
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	/**
+	 * @return the product
+	 */
+	public Product getProduct() {
+		return product;
+	}
+
+	/**
+	 * @param product the product to set
+	 */
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		OrderItem orderItem = (OrderItem) o;
+
+		return id == orderItem.id;
+	}
+
+	@Override
+	public int hashCode() {
+		return (int) (id ^ (id >>> 32));
+	}
+
+	/* (non-Javadoc)
+         * @see java.lang.Object#toString()
+         */
+	@Override
+	public String toString() {
+		return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order items total =" + order.getItemsStream().toArray().length + ", product=" + product
+				+ "]";
 	}
 }
