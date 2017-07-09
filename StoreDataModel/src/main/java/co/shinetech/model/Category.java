@@ -3,6 +3,8 @@
  */
 package co.shinetech.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -11,6 +13,7 @@ import java.util.Collection;
  * @author rodrigo
  * @since 03/06/2017
  */
+@Data
 @Entity
 @Table
 public class Category implements Domain<Long>{
@@ -26,10 +29,6 @@ public class Category implements Domain<Long>{
     @OneToMany(mappedBy="parent")
     private Collection<Category> children;
 
-    public Category() {
-        super();
-    }
-
     public Category(Long id) {
         this.id = id;
     }
@@ -42,61 +41,5 @@ public class Category implements Domain<Long>{
     @Override
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Category getParent() {
-        return parent;
-    }
-
-    public void setParent(Category parent) {
-        this.parent = parent;
-    }
-
-    public Collection<Category> getChildren() {
-        return children;
-    }
-
-    public void setChildren(Collection<Category> children) {
-        this.children = children;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return id == category.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", parent=" + parent +
-                ", children=" + children +
-                '}';
     }
 }

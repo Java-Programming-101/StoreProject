@@ -3,6 +3,8 @@
  */
 package co.shinetech.model;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import javax.persistence.*;
  * @author rodrigo
  * @since 16/03/2017
  */
+@Data
 @Entity
 @Table
 public class Product implements Domain<Long>{
@@ -72,86 +75,5 @@ public class Product implements Domain<Long>{
 	@Override
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public int getDimX() {
-		return dimX;
-	}
-	public void setDimX(int dimX) {
-		if( dimX >= 0 ) {
-			this.dimX = dimX;
-		}
-	}
-	public int getDimY() {
-		return dimY;
-	}
-	public void setDimY(int dimY) {
-		this.dimY = dimY;
-	}
-	public int getDimZ() {
-		return dimZ;
-	}
-	public void setDimZ(int dimZ) {
-		this.dimZ = dimZ;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public BigDecimal getPrice() {
-		return price;
-	}
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-	public String getBarcode() {
-		return barcode;
-	}
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
-	}
-
-	/**
-	 * @return the orderItems
-	 */
-	public Stream<OrderItem> getOrderItemsStream() {
-		return orderItems.stream();
-	}
-
-	/**
-	 * @param orderItems the orderItems to set
-	 */
-	public void addOrderItems(List<OrderItem> orderItems) {
-		this.orderItems.addAll(orderItems);
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Product product = (Product) o;
-
-		return id == product.id;
-	}
-
-	@Override
-	public int hashCode() {
-		return (int) (id ^ (id >>> 32));
 	}
 }
