@@ -26,6 +26,10 @@ public class Category implements Domain<Long>{
     @OneToMany(mappedBy="parent")
     private Collection<Category> children;
 
+    public Category() {
+        super();
+    }
+
     public Category(Long id) {
         this.id = id;
     }
