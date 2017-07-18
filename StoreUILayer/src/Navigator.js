@@ -16,7 +16,7 @@ class Navigator extends Component {
 
     componentDidMount() {
         console.log('componentDidMount()');
-        fetch(API_URL+'/category/findAll',{headers:API_HEADERS})
+        fetch(API_URL+'/category/findFirstLevel',{headers:API_HEADERS})
         .then((response) => response.json())
         .then((responseData) => {
             this.setState({categories:responseData});

@@ -14,6 +14,7 @@ import java.util.Collection;
  */
 @Entity
 @Table
+@NamedQuery(name="Category.findFirstLevel", query = "SELECT c FROM Category c WHERE c.id NOT IN (SELECT c.id FROM c.children)")
 public class Category implements Domain<Long>{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,9 +23,9 @@ public class Category implements Domain<Long>{
     private String name;
     @Column(length=256)
     private String description;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Category> parent;
-    @ManyToMany(mappedBy = "parent")
+    @ManyToMany(mappedBy = "parent",fetch = FetchType.LAZY)
     private Collection<Category> children;
 
     public Category() {
