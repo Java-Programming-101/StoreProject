@@ -3,8 +3,6 @@
  */
 package co.shinetech.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -13,7 +11,6 @@ import java.util.Collection;
  * @author rodrigo
  * @since 03/06/2017
  */
-@Data
 @Entity
 @Table
 public class Category implements Domain<Long>{

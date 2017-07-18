@@ -3,12 +3,11 @@
  */
 package co.shinetech.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
-import javax.persistence.*;
 
 /**
  * Domain class to transport Product object between layers.
