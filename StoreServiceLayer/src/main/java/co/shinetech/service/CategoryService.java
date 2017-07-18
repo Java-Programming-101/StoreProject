@@ -40,6 +40,7 @@ public class CategoryService implements Service<Category>{
     }
 
     @Override
+    @CrossOrigin
     @RequestMapping(value="/findAll",method=RequestMethod.GET)
     public @ResponseBody Iterable<Category> findAll() {
         return categoryRepository.findAll();
