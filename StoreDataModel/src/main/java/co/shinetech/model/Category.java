@@ -4,6 +4,7 @@
 package co.shinetech.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -21,9 +22,9 @@ public class Category implements Domain<Long>{
     private String name;
     @Column(length=256)
     private String description;
-    @ManyToOne
-    private Category parent;
-    @OneToMany(mappedBy="parent")
+    @ManyToMany
+    private Collection<Category> parent;
+    @ManyToMany(mappedBy = "parent")
     private Collection<Category> children;
 
     public Category() {
@@ -60,12 +61,20 @@ public class Category implements Domain<Long>{
         this.description = description;
     }
 
-    public Category getParent() {
-        return parent;
+    public Collection<Category> getParent() {
+        return new ArrayList<>(parent);
     }
 
-    public void setParent(Category parent) {
+    public void setParent(Collection<Category> parent) {
         this.parent = parent;
+    }
+
+    public Collection<Category> getChildren() {
+        return new ArrayList<>(children);
+    }
+
+    public void setChildren(Collection<Category> children) {
+        this.children = children;
     }
 
     @Override
