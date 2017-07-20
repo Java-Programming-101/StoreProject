@@ -3,6 +3,7 @@
  */
 package co.shinetech.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
@@ -30,7 +31,7 @@ public class Order implements Domain<Long>{
 	@JoinColumn(foreignKey=@ForeignKey(name="FK_ORDER_CUSTOMER"))
 	private Customer customer;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="order")
-	private List<OrderItem> items;
+	private List<OrderItem> items = new ArrayList<>();
 	
 	public Order() {
 		super();
@@ -63,7 +64,9 @@ public class Order implements Domain<Long>{
 		this.orderStatus = orderStatus;
 		this.paymentMethod = paymentMethod;
 		this.customer = customer;
-		this.items = items;
+		if( items != null ) {
+			this.items = items;
+		}
 	}
 
 	public Long getId() {

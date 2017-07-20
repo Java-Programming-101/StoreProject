@@ -22,15 +22,17 @@ public class Customer implements Domain<Long>{
 	private long id;
 	@Column(length=50)
 	private String name;
+	@Column(length = 128)
 	private String address;
 	@Column(length=20)
-	private String zipcode;
+	private String zipCode;
 	@Column(length=2)
 	private String country;
 	@Column(length=25)
-	private String taxid;
+	private String taxId;
 	@Column(length=20)
 	private String phone;
+	@Column(length = 128)
 	private String email;
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
@@ -45,35 +47,92 @@ public class Customer implements Domain<Long>{
 		this.id = id;
 	}
 
-	public Customer(String name) {
-		this.name = name;
-	}
-
 	/**
 	 * Constructor with fields.
 	 * @param id
 	 * @param name
 	 * @param address
-	 * @param zipcode
+	 * @param zipCode
 	 * @param country
-	 * @param taxid
+	 * @param taxId
 	 * @param phone
 	 * @param email
 	 * @param birthDate
 	 * @param orders
 	 */
-	public Customer(Long id, String name, String address, String zipcode, String country, String taxid, String phone, String email, Date birthDate, List<Order> orders) {
+	public Customer(Long id, String name, String address, String zipCode, String country, String taxId, String phone, String email, Date birthDate, List<Order> orders) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
-		this.zipcode = zipcode;
+		this.zipCode = zipCode;
 		this.country = country;
-		this.taxid = taxid;
+		this.taxId = taxId;
 		this.phone = phone;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.orders = orders;
+	}
+
+	public static class Builder {
+		private long nestedId;
+		private String nestedName;
+		private String nestedAddress;
+		private String nestedZipCode;
+		private String nestedCountry;
+		private String nestedTaxId;
+		private String nestedPhone;
+		private String nestedEmail;
+		private Date nestedBirthDate;
+		private List<Order> nestedOrders = new ArrayList<>();
+
+		public Builder(long id) {
+			this.nestedId = id;
+		}
+
+		public Builder withName(String name) {
+			this.nestedName = name;
+			return this;
+		}
+
+		public Builder withAddress(String address) {
+			this.nestedAddress = address;
+			return this;
+		}
+
+		public Builder withZipCode(String zipCode) {
+			this.nestedZipCode = zipCode;
+			return this;
+		}
+
+		public Builder withCountry(String country) {
+			this.nestedCountry = country;
+			return this;
+		}
+
+		public Builder withTaxId(String taxId) {
+			this.nestedTaxId = taxId;
+			return this;
+		}
+
+		public Builder withPhone(String phone) {
+			this.nestedPhone = phone;
+			return this;
+		}
+
+		public Builder withEmail(String email) {
+			this.nestedEmail = email;
+			return this;
+		}
+
+		public Builder withBirthDate(Date birthDate) {
+			this.nestedBirthDate = birthDate;
+			return this;
+		}
+
+		public Customer create() {
+			return new Customer(nestedId, nestedName, nestedAddress, nestedZipCode, nestedCountry, nestedTaxId, nestedPhone, nestedEmail, nestedBirthDate, nestedOrders);
+		}
 	}
 
 	@Override
@@ -102,12 +161,12 @@ public class Customer implements Domain<Long>{
 		this.address = address;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public String getCountry() {
@@ -118,12 +177,12 @@ public class Customer implements Domain<Long>{
 		this.country = country;
 	}
 
-	public String getTaxid() {
-		return taxid;
+	public String getTaxId() {
+		return taxId;
 	}
 
-	public void setTaxid(String taxid) {
-		this.taxid = taxid;
+	public void setTaxId(String taxId) {
+		this.taxId = taxId;
 	}
 
 	public String getPhone() {
@@ -182,8 +241,8 @@ public class Customer implements Domain<Long>{
 	 */
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", address=" + address + ", zipcode=" + zipcode + ", country="
-				+ country + ", taxid=" + taxid + ", phone=" + phone + ", email=" + email + ", birthDate=" + birthDate
-				+ ", orders=" + orders + "]";
+		return "Customer [nestedId=" + id + ", nestedName=" + name + ", nestedAddress=" + address + ", nestedZipCode=" + zipCode + ", nestedCountry="
+				+ country + ", nestedTaxId=" + taxId + ", nestedPhone=" + phone + ", nestedEmail=" + email + ", nestedBirthDate=" + birthDate
+				+ ", nestedOrders=" + orders + "]";
 	}
 }

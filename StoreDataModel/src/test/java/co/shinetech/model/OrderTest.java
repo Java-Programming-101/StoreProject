@@ -25,7 +25,7 @@ public class OrderTest {
 	public void testSetAndGetDate() {
 		ZoneId zoneId = ZoneId.of("NZ");
 		Calendar date = Calendar.getInstance(TimeZone.getTimeZone(zoneId));
-		String dateAsString = date.toString();
+		String dateAsString = date.getTime().toString();
 		Order order = new Order();
 		
 		order.setOrderDate(date.getTime());
@@ -37,7 +37,7 @@ public class OrderTest {
 	public void testSetAndGetEstimatedDeliveryDate() {
 		ZoneId zoneId = ZoneId.of("NZ");
 		Calendar deliveryDate = Calendar.getInstance(TimeZone.getTimeZone(zoneId));
-		String deliveryDateAsString = deliveryDate.toString();
+		String deliveryDateAsString = deliveryDate.getTime().toString();
 		Order order = new Order();
 		
 		order.setEstimatedDelivery(deliveryDate.getTime());

@@ -3,16 +3,11 @@ package co.shinetech.model;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Test;
-
-import co.shinetech.model.Customer;
 
 public class CustomerTest {
 
@@ -51,9 +46,9 @@ public class CustomerTest {
 		String zip = "1041";
 		
 		Customer tCustomer = new Customer();
-		tCustomer.setZipcode(zip);
+		tCustomer.setZipCode(zip);
 		
-		assertEquals(zip, tCustomer.getZipcode());
+		assertEquals(zip, tCustomer.getZipCode());
 	}
 	
 	@Test
@@ -71,9 +66,9 @@ public class CustomerTest {
 		String taxId = "111-1111-11";
 		
 		Customer tCustomer = new Customer();
-		tCustomer.setTaxid(taxId);
+		tCustomer.setTaxId(taxId);
 		
-		assertEquals(taxId,tCustomer.getTaxid());
+		assertEquals(taxId,tCustomer.getTaxId());
 	}
 	
 	@Test
@@ -108,9 +103,7 @@ public class CustomerTest {
 	
 	@Test
 	public final void testAddAndGetOrders(){
-		
 		Customer tCustomer = new Customer();
-		
 		long id = 4L;
 		List<Order> orders = new ArrayList<>();
 		List<OrderItem> items = new ArrayList<>()
@@ -129,5 +122,30 @@ public class CustomerTest {
 
 		
 		assertEquals("["+expected+"]",result.toString());
+	}
+
+	@Test
+	public void testBuilder() {
+		Date d = new Date();
+		Customer customer = new Customer.Builder(1L)
+				                .withAddress("Address")
+								.withBirthDate(d)
+								.withCountry("Country")
+								.withEmail("Email")
+								.withName("Name")
+								.withPhone("Phone")
+								.withTaxId("TaxId")
+								.withZipCode("ZipCode")
+								.create();
+
+		assertEquals(customer.getName(),"Name");
+		assertEquals(customer.getAddress(),"Address");
+		assertEquals(customer.getBirthDate(),d);
+		assertEquals(customer.getCountry(),"Country");
+		assertEquals(customer.getEmail(),"Email");
+		assertEquals(customer.getPhone(),"Phone");
+		assertEquals(customer.getTaxId(),"TaxId");
+		assertEquals(customer.getZipCode(),"ZipCode");
+		assertEquals(customer.getId(),new Long(1L));
 	}
 }

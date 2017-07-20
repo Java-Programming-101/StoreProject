@@ -14,7 +14,10 @@ import java.util.Collection;
  */
 @Entity
 @Table
-@NamedQuery(name="Category.findFirstLevel", query = "SELECT c FROM Category c WHERE c.id NOT IN (SELECT c.id FROM c.children)")
+@NamedQueries({
+    @NamedQuery(name="Category.findFirstLevel", query = "SELECT c FROM Category c WHERE c.id NOT IN (SELECT c.id FROM c.children)"),
+    @NamedQuery(name="Category.findSubCategories",query = "SELECT c FROM Category c WHERE c.id IN (SELECT c FROM Category c WHERE c.parent IS EMPTY)")
+})
 public class Category implements Domain<Long>{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
