@@ -29,7 +29,8 @@ public class CustomerServiceTest {
 
     @Before
     public void setup() {
-        List<Customer> list = Arrays.asList(new Customer[]{new Customer("John White"), new Customer("John White")});
+        List<Customer> list = Arrays.asList(new Customer[]{new Customer.Builder(1L).withName("John White").create(),
+                                                           new Customer.Builder(2L).withName("John White").create()});
 
         list.stream().forEach(customerService::create);
     }
@@ -58,6 +59,5 @@ public class CustomerServiceTest {
 
     @After
     public void clean() {
-
     }
 }

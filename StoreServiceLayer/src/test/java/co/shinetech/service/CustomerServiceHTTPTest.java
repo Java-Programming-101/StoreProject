@@ -41,11 +41,11 @@ public class CustomerServiceHTTPTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private Customer mockCustomer = new Customer("John Mock");
+    private Customer mockCustomer = new Customer.Builder(1L).withName("John Mock").create();
 
-    private Iterable<Customer> mockIterableCustomer = Arrays.asList(new Customer[] {new Customer("John White"),
-                                                                                    new Customer( "John Red"),
-                                                                                    new Customer( "John Blue")});
+    private Iterable<Customer> mockIterableCustomer = Arrays.asList(new Customer[] {new Customer.Builder(2L).withName("John White").create(),
+                                                                                    new Customer.Builder(3L).withName("John Red").create(),
+                                                                                    new Customer.Builder(4L).withName("John Blue").create()});
 
     @Before
     public void setup() {
@@ -54,7 +54,7 @@ public class CustomerServiceHTTPTest {
 
     @Test
     public void createTest() throws Exception {
-        Customer c = new Customer("John Black");
+        Customer c = new Customer.Builder(5L).withName("John Black").create();
         doNothing().when( customerService ).create( c );
         mockMvc.perform( post("/customer/create")
                          .contentType(MediaType.APPLICATION_JSON)

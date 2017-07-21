@@ -24,8 +24,8 @@ public class JavaToJSON {
         c.setCountry("GB");
         c.setBirthDate(Calendar.getInstance().getTime());
         c.setEmail("customer@myplace.co");
-        c.setTaxid("000.214.979-66");
-        c.setZipcode("88000-000");
+        c.setTaxId("000.214.979-66");
+        c.setZipCode("88000-000");
         mapper.writeValue(new File("./Customer2.json"),c);
     }
 }

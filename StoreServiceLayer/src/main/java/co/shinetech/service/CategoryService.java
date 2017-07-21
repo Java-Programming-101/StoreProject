@@ -4,7 +4,6 @@
 package co.shinetech.service;
 
 import co.shinetech.model.Category;
-import co.shinetech.model.Customer;
 import co.shinetech.repository.CategoryRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,16 @@ public class CategoryService implements Service<Category>{
 
     @CrossOrigin
     @RequestMapping(value="/findFirstLevel",method=RequestMethod.GET)
+    @JsonIgnoreProperties({"parent","children"})
     public @ResponseBody Iterable<Category> findFirstLevel() {
         return categoryRepository.findFirstLevel();
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="/findSecondLevel/{id}",method=RequestMethod.GET)
+    @JsonIgnoreProperties({"parent","children"})
+    public @ResponseBody Iterable<Category> findSubCategories(@PathVariable String id) {
+        return categoryRepository.findSubCategories(Long.valueOf(id));
     }
 
     @Override

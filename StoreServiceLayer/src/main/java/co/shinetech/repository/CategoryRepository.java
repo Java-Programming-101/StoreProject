@@ -9,5 +9,6 @@ import java.util.List;
  * Created by rodrigo on 7/3/2017.
  */
 public interface CategoryRepository extends CrudRepository<Category,Long> {
-    public List<Category> findFirstLevel();
+    List<Category> findFirstLevel();
+    List<Category> findSubCategories(Long id);
 }

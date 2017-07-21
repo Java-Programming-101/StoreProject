@@ -3,6 +3,8 @@
  */
 package co.shinetech.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,8 +17,10 @@ import java.util.Collection;
 @Entity
 @Table
 @NamedQueries({
-    @NamedQuery(name="Category.findFirstLevel", query = "SELECT c FROM Category c WHERE c.id NOT IN (SELECT c.id FROM c.children)"),
-    @NamedQuery(name="Category.findSubCategories",query = "SELECT c FROM Category c WHERE c.id IN (SELECT c FROM Category c WHERE c.parent IS EMPTY)")
+    @NamedQuery(name="Category.findFirstLevel", query = "SELECT c FROM Category c WHERE c.id NOT IN (SELECT c.id FROM c.parent)")
+})
+@NamedNativeQueries({
+  @NamedNativeQuery(name = "Category.findSubCategories", query = "SELECT c.* FROM category c INNER JOIN category_parent cp ON (c.id = cp.children_id) WHERE cp.parent_id = ?1",resultClass = Category.class)
 })
 public class Category implements Domain<Long>{
     @Id
@@ -26,8 +30,10 @@ public class Category implements Domain<Long>{
     private String name;
     @Column(length=256)
     private String description;
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Category> parent;
+    @JsonIgnore
     @ManyToMany(mappedBy = "parent",fetch = FetchType.LAZY)
     private Collection<Category> children;
 

@@ -29,7 +29,7 @@ class Navigator extends Component {
     render() {
         var categoriesElements = this.state.categories.map((category,index) => {
                                     var c = 'color'+(index+2);
-                                    return <MenuItem class={c} caption={category.name} href="#" />
+                                    return <MenuItem categoryId={category.id} class={c} caption={category.name} href="#" />
         });
 
         return (
