@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class Customer implements Domain<Long>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@Column(length=50)
 	private String name;
 	@Column(length = 128)
@@ -219,7 +219,7 @@ public class Customer implements Domain<Long>{
 
 	@Override
 	public int hashCode() {
-		return new LongPK(id).hashCode();
+		return id.hashCode();
 	}
 
 	@Override
