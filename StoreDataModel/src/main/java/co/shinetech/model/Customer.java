@@ -4,6 +4,7 @@
 package co.shinetech.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Customer implements Domain<Long>{
 	@Column(length = 128)
 	private String email;
 	@Temporal(TemporalType.DATE)
-	private Date birthDate;
+	private LocalDate birthDate;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY, mappedBy="customer")
 	private List<Order> orders = new ArrayList<>();
 
@@ -60,7 +61,7 @@ public class Customer implements Domain<Long>{
 	 * @param birthDate
 	 * @param orders
 	 */
-	public Customer(Long id, String name, String address, String zipCode, String country, String taxId, String phone, String email, Date birthDate, List<Order> orders) {
+	public Customer(Long id, String name, String address, String zipCode, String country, String taxId, String phone, String email, LocalDate birthDate, List<Order> orders) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -83,7 +84,7 @@ public class Customer implements Domain<Long>{
 		private String nestedTaxId;
 		private String nestedPhone;
 		private String nestedEmail;
-		private Date nestedBirthDate;
+		private LocalDate nestedBirthDate;
 		private List<Order> nestedOrders = new ArrayList<>();
 
 		public Builder(long id) {
@@ -125,7 +126,7 @@ public class Customer implements Domain<Long>{
 			return this;
 		}
 
-		public Builder withBirthDate(Date birthDate) {
+		public Builder withBirthDate(LocalDate birthDate) {
 			this.nestedBirthDate = birthDate;
 			return this;
 		}
@@ -201,11 +202,11 @@ public class Customer implements Domain<Long>{
 		this.email = email;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

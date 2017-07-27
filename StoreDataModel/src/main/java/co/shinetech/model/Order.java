@@ -3,6 +3,7 @@
  */
 package co.shinetech.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,9 +23,9 @@ public class Order implements Domain<Long>{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date orderDate;
+	private LocalDate orderDate;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date estimatedDelivery;
+	private LocalDate estimatedDelivery;
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -55,7 +56,7 @@ public class Order implements Domain<Long>{
 	 * @param customer
 	 * @param items
 	 */
-	public Order(long id, Date date, Date estimatedDelivery, OrderStatus orderStatus,
+	public Order(long id, LocalDate date, LocalDate estimatedDelivery, OrderStatus orderStatus,
 			PaymentMethod paymentMethod, Customer customer, List<OrderItem> items) {
 		super();
 		this.id = id;
@@ -78,19 +79,19 @@ public class Order implements Domain<Long>{
 		
 	}
 
-	public Date getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
 
-	public Date getEstimatedDelivery() {
+	public LocalDate getEstimatedDelivery() {
 		return estimatedDelivery;
 	}
 
-	public void setEstimatedDelivery(Date estimatedDelivery) {
+	public void setEstimatedDelivery(LocalDate estimatedDelivery) {
 		this.estimatedDelivery = estimatedDelivery;
 	}
 

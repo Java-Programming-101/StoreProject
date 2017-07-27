@@ -3,6 +3,7 @@ package co.shinetech.model;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class OrderItemTest {
 
         List<OrderItem> orderItemList = new ArrayList<>();
 
-        Order order  = new Order( 4l, new Date(2017,05,10), new Date (2017,05,11), OrderStatus.PROCESSED,
+        Order order  = new Order( 4l, LocalDate.of(2017, 05, 10), LocalDate.of(2017,05,11), OrderStatus.PROCESSED,
                 PaymentMethod.CASH, new Customer(), orderItemList);
 
 

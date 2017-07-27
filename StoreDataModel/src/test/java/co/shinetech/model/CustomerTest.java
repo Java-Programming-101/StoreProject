@@ -3,6 +3,7 @@ package co.shinetech.model;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,23 +94,30 @@ public class CustomerTest {
 	
 	@Test
 	public final void testGetAndSetBirthdate(){
-		Date date = new Date(2017, 4, 10);
+		LocalDate date = LocalDate.of(10,2,15);
 		
 		Customer tCustomer = new Customer();
 		tCustomer.setBirthDate(date);
 		
 		assertEquals(date,tCustomer.getBirthDate());
 	}
-	
+
+	@Test
+	public final void testSingleArgCustomerConstructor(){
+		Customer tCustomer = new Customer(5736L);
+		long fromTCustomer = tCustomer.getId();
+
+		assertEquals(fromTCustomer , 5736L);
+
+	}
 	@Test
 	public final void testAddAndGetOrders(){
 		Customer tCustomer = new Customer();
 		long id = 4L;
 		List<Order> orders = new ArrayList<>();
-		List<OrderItem> items = new ArrayList<>()
-				;
-		Date orderDate = new Date(2017, 4, 10);
-		Date estimatedDelivery = new Date(2017, 4, 20);
+		List<OrderItem> items = new ArrayList<>();
+		LocalDate orderDate = LocalDate.of(2017, 4, 10);
+		LocalDate estimatedDelivery = LocalDate.of(2017, 4, 20);
 		Order order = new Order(5L,orderDate,estimatedDelivery,OrderStatus.PROCESSED,PaymentMethod.DEBITCARD,tCustomer,items);
 		Product product = new Product(5L,"Java Study 101",BigDecimal.valueOf(29.99),2,"Barcode",10,20,5,items);
 		items.add(new OrderItem( 5L, BigDecimal.valueOf(29.99), 2,order,product));
@@ -126,7 +134,7 @@ public class CustomerTest {
 
 	@Test
 	public void testBuilder() {
-		Date d = new Date();
+		LocalDate d = LocalDate.of(2010,1,6);
 		Customer customer = new Customer.Builder(1L)
 				                .withAddress("Address")
 								.withBirthDate(d)
@@ -147,5 +155,96 @@ public class CustomerTest {
 		assertEquals(customer.getTaxId(),"TaxId");
 		assertEquals(customer.getZipCode(),"ZipCode");
 		assertEquals(customer.getId(),new Long(1L));
+	}
+
+	@Test
+	public void testEquals(){
+		LocalDate d = LocalDate.of(2010,1,6);
+		Customer customer = new Customer.Builder(1L)
+				.withAddress("Address")
+				.withBirthDate(d)
+				.withCountry("Country")
+				.withEmail("Email")
+				.withName("Name")
+				.withPhone("Phone")
+				.withTaxId("TaxId")
+				.withZipCode("ZipCode")
+				.create();
+
+		LocalDate d2 = LocalDate.of(2010,1,6);
+		Customer customer2 = new Customer.Builder(1L)
+				.withAddress("Address")
+				.withBirthDate(d2)
+				.withCountry("Country")
+				.withEmail("Email")
+				.withName("Name")
+				.withPhone("Phone")
+				.withTaxId("TaxId")
+				.withZipCode("ZipCode")
+				.create();
+
+		Date d3 = new Date();
+		Customer customerDifferent = new Customer.Builder(3L)
+				.withAddress("Address Different")
+				.withBirthDate(d2)
+				.withCountry("Country Different")
+				.withEmail("Email Different")
+				.withName("Name Different")
+				.withPhone("Phone Different")
+				.withTaxId("TaxId Different")
+				.withZipCode("ZipCode Different")
+				.create();
+
+		Object nullObj = null;
+		Customer nullCust = null;
+		OrderItem orderItem = new OrderItem();
+
+		assert(customer.equals(customer2)== true);
+		assert (customer.equals(customerDifferent) == false);
+		assert(customer.equals(nullCust) == false);
+		assert(customer.equals(nullObj) == false);
+		assert(customer.equals(orderItem) == false);
+	}
+
+	@Test
+	public void testHashcode(){
+		Long toHash = 765341L;
+
+		int hash = toHash.hashCode();
+
+		LocalDate d = LocalDate.of(2010,1,6);
+		Customer customer = new Customer.Builder(765341L)
+				.withAddress("Address")
+				.withBirthDate(d)
+				.withCountry("Country")
+				.withEmail("Email")
+				.withName("Name")
+				.withPhone("Phone")
+				.withTaxId("TaxId")
+				.withZipCode("ZipCode")
+				.create();
+
+
+		assertEquals(hash, customer.hashCode());
+	}
+
+	@Test
+	public void testToString(){
+		LocalDate d = LocalDate.of(2010,1,6);
+
+		Customer customer = new Customer.Builder(765341L)
+				.withAddress("Address")
+				.withBirthDate(d)
+				.withCountry("Country")
+				.withEmail("Email")
+				.withName("Name")
+				.withPhone("Phone")
+				.withTaxId("TaxId")
+				.withZipCode("ZipCode")
+				.create();
+
+		assert(customer.toString().equals("Customer [nestedId=765341, nestedName=Name, nestedAddress=Address, nestedZipCode=ZipCode, nestedCountry=Country, nestedTaxId=TaxId, nestedPhone=Phone, nestedEmail=Email, nestedBirthDate=2010-01-06, nestedOrders=[]]"));
+
+
 	}
 }
