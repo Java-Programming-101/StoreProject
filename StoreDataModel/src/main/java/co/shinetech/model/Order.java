@@ -22,9 +22,9 @@ public class Order implements Domain<Long>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Column
 	private LocalDate orderDate;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Column
 	private LocalDate estimatedDelivery;
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;

@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Marc on 2/05/2017.
@@ -69,6 +71,30 @@ public class OrderItemTest {
         oi.setProduct(product);
 
         assertEquals(product, oi.getProduct());
+
+    }
+    @Test
+    public void testEquals (){
+        OrderItem oi1 = new OrderItem();
+        OrderItem oi2 = new OrderItem();
+        Object obj = new Object();
+        OrderItem nOi = null;
+
+        oi1.setId(187692L);
+        oi2.setId(187692L);
+
+        assertTrue(oi1.equals(oi1));
+        assertTrue(oi1.equals(oi2));
+        assertFalse(oi1.equals(obj));
+        assertFalse(oi1.equals(nOi));
+
+    }
+    @Test
+    public void testHashcode(){
+        OrderItem oi1 = new OrderItem();
+        oi1.setId(187692L);
+        int hash = 187692;
+        assertTrue(oi1.hashCode() == hash);
 
     }
 }

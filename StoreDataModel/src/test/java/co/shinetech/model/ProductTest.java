@@ -100,4 +100,33 @@ public class ProductTest {
 		}
 		assertTrue("acutal productOrderItems is wrong",isOk);
 	}
+
+	@Test
+	public void SetAndGetCategory(){
+		Product p1 = new Product();
+
+		Category category = new Category();
+		category.setDescription("This is a Test");
+		category.setId(657654L);
+
+		p1.setCategory(category);
+
+		assertEquals(category, p1.getCategory());
+
+	}
+
+	@Test
+	public void Equals(){
+		Product p1 = new Product();
+		p1.setId(6548L);
+		Product p2 = new Product();
+		p2.setId(6548L);
+		Product pNull = null;
+		Object obj = new Object();
+
+		assertTrue(p1.equals(p1));
+		assertTrue(p1.equals(p2));
+		assertFalse(p1.equals(pNull));
+		assertFalse(p1.equals(obj));
+	}
 }

@@ -35,7 +35,7 @@ public class Customer implements Domain<Long>{
 	private String phone;
 	@Column(length = 128)
 	private String email;
-	@Temporal(TemporalType.DATE)
+	@Column
 	private LocalDate birthDate;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY, mappedBy="customer")
 	private List<Order> orders = new ArrayList<>();
