@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CategoryTest {
 
@@ -18,6 +19,33 @@ public class CategoryTest {
 		Category tCat = new Category();
 		tCat.setId(id);
 		assertEquals(id,tCat.getId());
+	}
+	@Test
+	public final void testGetAndSetName() {
+		String name = "Johnny Smith";
+		Category tCat = new Category();
+		tCat.setName(name);
+		assertEquals(name,tCat.getName());
+	}
+
+	@Test
+	public final void testGetandSetChildandParent(){
+		Category one = new Category();
+
+
+		ArrayList<Category> child = new ArrayList<>();
+		child.add(new Category(3L));
+
+		ArrayList<Category> parent = new ArrayList<>();
+		parent.add(new Category(7L));
+
+		one.setParent(parent);
+		one.setChildren(child);
+
+		assertEquals(child, one.getChildren());
+		assertEquals(parent, one.getParent());
+
+
 	}
 
 	@Test
@@ -43,9 +71,51 @@ public class CategoryTest {
 		two.setParent(parent);
 		two.setChildren(child);
 
-		assert(one.equals(two));
+		assertTrue(one.equals(two));
 
 	}
-	
+
+	@Test
+	public final void testGetandSetDescription(){
+		Category one = new Category();
+
+		String description = "Size 9 Shoes";
+		one.setDescription(description);
+
+		assertEquals(one.getDescription(),description);
+	}
+
+	@Test
+	public final void testHashcode(){
+		Category one = new Category();
+
+		one.setId(2345543L);
+		long hash = one.hashCode();
+
+		assertTrue(one.hashCode()== hash);
+	}
+
+	@Test
+	public final void testToString(){
+		Category one = new Category();
+
+
+		ArrayList<Category> child = new ArrayList<>();
+		child.add(new Category(3L));
+
+		ArrayList<Category> parent = new ArrayList<>();
+		parent.add(new Category(7L));
+
+		one.setId(2L);
+		one.setName("Shoes");
+		one.setDescription("Size 9 Shoes");
+		one.setParent(parent);
+		one.setChildren(child);
+
+		String tString = "Category{id=2, name='Shoes', description='Size 9 Shoes', parent=[Category{id=7, name='null', description='null', parent=null, children=null}], children=[Category{id=3, name='null', description='null', parent=null, children=null}]}";
+
+		assertTrue(tString.equals(one.toString()));
+
+	}
 
 }

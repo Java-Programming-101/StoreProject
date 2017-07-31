@@ -2,6 +2,7 @@ package co.shinetech.model;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -23,24 +24,23 @@ public class OrderTest {
 	
 	@Test
 	public void testSetAndGetDate() {
-		ZoneId zoneId = ZoneId.of("NZ");
-		Calendar date = Calendar.getInstance(TimeZone.getTimeZone(zoneId));
-		String dateAsString = date.getTime().toString();
+		LocalDate d = LocalDate.of(2010,1,6);
+		String dateAsString = d.toString();
+
 		Order order = new Order();
-		
-		order.setOrderDate(date.getTime());
+		order.setOrderDate(d);
 		
 		assertEquals(dateAsString, order.getOrderDate().toString());
 	}
 	
 	@Test
 	public void testSetAndGetEstimatedDeliveryDate() {
-		ZoneId zoneId = ZoneId.of("NZ");
-		Calendar deliveryDate = Calendar.getInstance(TimeZone.getTimeZone(zoneId));
-		String deliveryDateAsString = deliveryDate.getTime().toString();
+
+		LocalDate deliveryDate = LocalDate.now().plusWeeks(2);
+		String deliveryDateAsString = deliveryDate.toString();
 		Order order = new Order();
 		
-		order.setEstimatedDelivery(deliveryDate.getTime());
+		order.setEstimatedDelivery(deliveryDate);
 		
 		assertEquals(deliveryDateAsString, order.getEstimatedDelivery().toString());
 	}
@@ -74,8 +74,7 @@ public class OrderTest {
 		
 		assertEquals(customer, order.getCustomer());
 	}
-	
-	//TODO think about more suitable test
+
 	@Test
 	public void testAddAndGetItems() {
 		OrderItem item1 = new OrderItem();
@@ -91,5 +90,38 @@ public class OrderTest {
 		
 		assertEquals(item1, arrayToGet[0]);
 		assertEquals(item2, arrayToGet[1]);
+	}
+
+	@Test
+	public void testEquals() {
+		OrderItem item1 = new OrderItem();
+		OrderItem item2 = new OrderItem();
+		List<OrderItem> listToAdd = new ArrayList();
+		listToAdd.add(item1);
+		listToAdd.add(item2);
+		Order order1 = new Order();
+		Order order2 = new Order();
+
+		order1.addItems(listToAdd);
+		order2.addItems(listToAdd);
+
+		Object emptyObj = new Object();
+
+
+		assertTrue(order1.equals(order2));
+		assertFalse(order1.equals(emptyObj));
+		assertFalse(order1.equals(null));
+	}
+
+	@Test
+	public void testHashCode(){
+		OrderItem item1 = new OrderItem();
+		OrderItem item2 = new OrderItem();
+		List<OrderItem> listToAdd = new ArrayList();
+		listToAdd.add(item1);
+		listToAdd.add(item2);
+		Order order1 = new Order();
+		order1.setId(677398L);
+		assertTrue(order1.hashCode() == 677398);
 	}
 }
