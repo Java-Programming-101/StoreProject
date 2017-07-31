@@ -52,7 +52,7 @@ public class CategoryService implements Service<Category>{
     }
 
     @CrossOrigin
-    @RequestMapping(value="/findSecondLevel/{id}",method=RequestMethod.GET)
+    @RequestMapping(value="/findSubCategories/{id}",method=RequestMethod.GET)
     @JsonIgnoreProperties({"parent","children"})
     public @ResponseBody Iterable<Category> findSubCategories(@PathVariable String id) {
         return categoryRepository.findSubCategories(Long.valueOf(id));

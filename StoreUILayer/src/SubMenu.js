@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MenuItem from './MenuItem';
 import 'whatwg-fetch';
 
 const API_URL = 'http://localhost:8088';
@@ -14,20 +13,9 @@ class SubMenu extends Component {
         this.state = { categories: [] };
     }
 
-    componentDidMount() {
-        console.log('componentDidMount()');
-        fetch(API_URL+'/category/findSecondLevel/'+this.props.id,{headers:API_HEADERS})
-        .then((response) => response.json())
-        .then((responseData) => {
-            this.setState({categories:responseData});
-        })
-        .catch((error) => {
-            console.log('Error fetching and parsing data',error);
-        });
-    }
 
     render() {
-        var childElements = this.state.categories.map((category,index) => {
+        var childElements = this.state.categories.map((category) => {
                                     return <div className="col1">
                                                 <div className="h_nav">
                                                     <h4>{category.name}</h4>
@@ -40,7 +28,7 @@ class SubMenu extends Component {
                                                         <li><a href="women.html">brands</a></li>
                                                     </ul>
                                                 </div>
-                                            </div>
+                                           </div>
         });
 
         return (
