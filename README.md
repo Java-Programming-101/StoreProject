@@ -15,7 +15,7 @@ To set up this project you will need the following tools. (we have assumed for t
 
 - MySql Workbench  ( https://dev.mysql.com/downloads/installer/ )
   - Download and install MySQL, When given the option select the developer installation and accept all the defaults. You will be asked to create a root account with a password REMEMBER THE PASSWORD. 
-  - When MySQL has been installed, The workbench should be accessable. Open it up and select the root user, you will be prompted for your password. 
+  - When MySQL has been installed, The workbench should be accessible. Open it up and select the root user, you will be prompted for your password.
   - On the left hand side you should be able to see the word "Schemas" under that you should see a box with "Filter objects" in it, right click under there and select "Create Schema"
   - Call Schema "storedb"
   - Hit apply
@@ -41,17 +41,17 @@ To set up this project you will need the following tools. (we have assumed for t
 #### Database connection configuration.
 - Remember the password you set for Mysql?
 - Open Intellij and this project. 
-- navigate to TODO: input path to the properties file containing the database connection Password. 
+- navigate to \StoreProject\StoreServiceLayer\src\main\resources\application.properties
 - change the password from "qwe123" to the password you set for MySQL
 - save your edit. 
-- Navigate to TODO: input path for store boot method.
+- Navigate to \StoreProject\StoreServiceLayer\src\main\java\co\shinetech\StoreBoot.java
 - Run the store boot method.
 
 #### Populate some data
 - Open MySql Workbench
 - Open your "root" user, input your password.
-- Click file TODO: input menu clicks to open SQL script 
-- Navigate to TODO: input file path to SQL script
+- Click file > Open SQL Script
+- Navigate to \StoreProject\StoreDataModel\src\test\resources\sql\categories.sql click open
 - Click Run
 
 # Node Package manager
@@ -61,9 +61,25 @@ To set up this project you will need the following tools. (we have assumed for t
 - Type "npm start" Providing there are no issues you should have an internet browser pop up. (depending on the state of the project a good looking page may or may not show up but your internet browser should definatly open)
 
 
-# More to come, not complete yet ....
+# More detail to come, not complete yet. The following section will be padded out with a very basic description and links to useful resources....
+
+# What Technologies, Tools, Frameworks or libraries are we using?
+
+## Java
+    ### JPA
+    ### Spring Boot
+        #### Spring
+        #### Hibernate
+
+## Maven
 
 
+
+## MySql
+
+## JavaScript
+    ### Node Package Manager
+    ### React
 
 
 
