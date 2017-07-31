@@ -38,9 +38,28 @@ To set up this project you will need the following tools. (we have assumed for t
 
 # Some quick house keeping
 
+#### Database connection configuration.
 - Remember the password you set for Mysql?
 - Open Intellij and this project. 
-- navigate to 
+- navigate to TODO: input path to the properties file containing the database connection Password. 
+- change the password from "qwe123" to the password you set for MySQL
+- save your edit. 
+- Navigate to TODO: input path for store boot method.
+- Run the store boot method.
+
+#### Populate some data
+- Open MySql Workbench
+- Open your "root" user, input your password.
+- Click file TODO: input menu clicks to open SQL script 
+- Navigate to TODO: input file path to SQL script
+- Click Run
+
+# Node Package manager
+- Open your command line
+- Navigate to the StoreUI folder
+- Type "npm install" and wait for that to finish. 
+- Type "npm start" Providing there are no issues you should have an internet browser pop up. (depending on the state of the project a good looking page may or may not show up but your internet browser should definatly open)
+
 
 # More to come, not complete yet ....
 
