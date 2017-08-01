@@ -27,6 +27,8 @@ class MenuItem extends Component {
 
     render() {
         return (
+          console.log("MenuItem category props ===", this.props.categories),
+          console.log("MenuItem category state ===", this.state.categories),
             <li className="grid"><a className={this.props.class} href={this.props.href}>{this.props.caption}</a>
                 <SubMenu categories={this.state.categories} />
             </li>

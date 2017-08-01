@@ -15,7 +15,7 @@ class SubMenu extends Component {
 
 
     render() {
-        var childElements = this.state.categories.map((category) => {
+        var childElements = this.props.categories.map((category) => {
                                     return <div className="col1">
                                                 <div className="h_nav">
                                                     <h4>{category.name}</h4>
@@ -32,16 +32,10 @@ class SubMenu extends Component {
         });
 
         return (
+          console.log("Child Elements: ", childElements),
             <div className="megapanel">
                 <div className="row">
                     {childElements}
-                </div>
-                <div className="row">
-                    <div className="col2"></div>
-                    <div className="col1"></div>
-                    <div className="col1"></div>
-                    <div className="col1"></div>
-                    <div className="col1"></div>
                 </div>
             </div>
         );
