@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 /**
@@ -22,7 +23,7 @@ public class JavaToJSON {
         c.setName("Customer #1");
         c.setAddress("Theodore St, 99");
         c.setCountry("GB");
-        c.setBirthDate(Calendar.getInstance().getTime());
+        c.setBirthDate(LocalDate.now());
         c.setEmail("customer@myplace.co");
         c.setTaxId("000.214.979-66");
         c.setZipCode("88000-000");

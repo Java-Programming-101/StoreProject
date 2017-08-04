@@ -18,11 +18,13 @@ class Navigator extends Component {
         fetch(API_URL+'/category/findFirstLevel',{headers:API_HEADERS})
         .then((response) => response.json())
         .then((responseData) => {
+          console.log(responseData);
             this.setState({categories:responseData});
         })
         .catch((error) => {
             console.log('Error fetching and parsing data',error);
         });
+        
     }
 
     render() {
