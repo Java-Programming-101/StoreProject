@@ -33,7 +33,6 @@ public class Category implements Domain<Long>{
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Category> parent;
-    @JsonIgnore
     @ManyToMany(mappedBy = "parent",fetch = FetchType.LAZY)
     private Collection<Category> children;
 

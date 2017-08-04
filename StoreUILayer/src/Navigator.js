@@ -28,9 +28,8 @@ class Navigator extends Component {
     render() {
         var categoriesElements = this.state.categories.map((category,index) => {
                                     var c = 'color'+(index+2);
-                                    return <MenuItem categoryId={category.id} class={c} caption={category.name} href="#" />
+                                    return <MenuItem category={category} categoryId={category.id} class={c} caption={category.name} href="#" />
         });
-
         return (
             <ul className="megamenu skyblue">
                 <li className="active grid">
@@ -39,6 +38,10 @@ class Navigator extends Component {
                 {categoriesElements}
             </ul>
         );
+    }
+
+    componentDidUpdate() {
+        window.refresh();
     }
 }
 export default Navigator;

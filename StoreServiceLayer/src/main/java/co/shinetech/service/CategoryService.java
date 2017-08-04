@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Category Service (CRUD).
  * Created by rodrigo on 3/7/2017.
@@ -46,16 +48,13 @@ public class CategoryService implements Service<Category>{
 
     @CrossOrigin
     @RequestMapping(value="/findFirstLevel",method=RequestMethod.GET)
-    @JsonIgnoreProperties({"parent","children"})
+    @JsonIgnoreProperties({"parent"})
     public @ResponseBody Iterable<Category> findFirstLevel() {
-        return categoryRepository.findFirstLevel();
-    }
+        List<Category> categoryList = categoryRepository.findFirstLevel();
 
-    @CrossOrigin
-    @RequestMapping(value="/findSubCategories/{id}",method=RequestMethod.GET)
-    @JsonIgnoreProperties({"parent","children"})
-    public @ResponseBody Iterable<Category> findSubCategories(@PathVariable String id) {
-        return categoryRepository.findSubCategories(Long.valueOf(id));
+        categoryList.parallelStream().forEach( c -> c.getChildren() );
+
+        return categoryList;
     }
 
     @Override
