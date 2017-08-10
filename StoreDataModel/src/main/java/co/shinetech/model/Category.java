@@ -19,9 +19,6 @@ import java.util.Collection;
 @NamedQueries({
     @NamedQuery(name="Category.findFirstLevel", query = "SELECT c FROM Category c WHERE c.id NOT IN (SELECT c.id FROM c.parent)")
 })
-@NamedNativeQueries({
-  @NamedNativeQuery(name = "Category.findSubCategories", query = "SELECT c.* FROM category c INNER JOIN category_parent cp ON (c.id = cp.children_id) WHERE cp.parent_id = ?1",resultClass = Category.class)
-})
 public class Category implements Domain<Long>{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

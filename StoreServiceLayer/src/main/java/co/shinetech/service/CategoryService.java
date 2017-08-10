@@ -53,7 +53,6 @@ public class CategoryService implements Service<Category>{
         List<Category> categoryList = categoryRepository.findFirstLevel();
 
         categoryList.parallelStream().forEach( c -> c.getChildren() );
-
         return categoryList;
     }
 
