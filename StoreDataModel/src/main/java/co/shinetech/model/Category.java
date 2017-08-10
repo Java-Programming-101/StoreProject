@@ -27,6 +27,8 @@ public class Category implements Domain<Long>{
     private String name;
     @Column(length=256)
     private String description;
+    @Column(length = 256)
+    private String image;
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Category> parent;
@@ -67,6 +69,13 @@ public class Category implements Domain<Long>{
         this.description = description;
     }
 
+    public String getImage() {        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Collection<Category> getParent() {
         return new ArrayList<>(parent);
     }
@@ -104,6 +113,7 @@ public class Category implements Domain<Long>{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", image=" + image +
                 ", parent=" + parent +
                 ", children=" + children +
                 '}';

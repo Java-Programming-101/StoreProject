@@ -28,6 +28,8 @@ public class Product implements Domain<Long>{
 	private int dimX;
 	private int dimY;
 	private int dimZ;
+	@Column(length = 256)
+	private String image;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="product")
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	@ManyToOne
@@ -92,6 +94,12 @@ public class Product implements Domain<Long>{
 	public void setDimZ(int dimZ) {
 		this.dimZ = dimZ;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getName() {
 		return name;
 	}
@@ -152,5 +160,22 @@ public class Product implements Domain<Long>{
 	@Override
 	public int hashCode() {
 		return (int) (id ^ (id >>> 32));
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", price=" + price +
+				", weight=" + weight +
+				", barcode='" + barcode + '\'' +
+				", dimX=" + dimX +
+				", dimY=" + dimY +
+				", dimZ=" + dimZ +
+				", image='" + image + '\'' +
+				", orderItems=" + orderItems +
+				", category=" + category +
+				'}';
 	}
 }

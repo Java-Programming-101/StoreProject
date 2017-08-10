@@ -1,4 +1,4 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navigator from './Navigator';
-ReactDOM.render(<Navigator />, document.getElementById('menu'));
+import Body from './Body';
+ReactDOM.render(<Body />, document.getElementById('body'));
