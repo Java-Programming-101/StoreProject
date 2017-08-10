@@ -130,7 +130,7 @@ public class OrderItem implements Domain<Long> {
     */
     @Override
     public String toString() {
-        return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order items total =" + order.getItemsStream().toArray().length + ", product=" + product
+        return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order items total =" + order.getItemsStream().toArray().length + ", productID=" + product.getId()
                 + "]";
     }
 }

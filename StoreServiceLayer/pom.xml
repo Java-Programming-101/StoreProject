@@ -20,13 +20,7 @@
             <artifactId>storedatamodel</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- Angular 2 module dependency -->
-        <dependency>
-            <groupId>${parent.groupId}</groupId>
-            <artifactId>storeuilayer</artifactId>
-            <version>${project.version}</version>
-            <scope>runtime</scope>
-        </dependency>
+
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
