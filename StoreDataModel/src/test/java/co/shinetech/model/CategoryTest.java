@@ -111,8 +111,9 @@ public class CategoryTest {
 		one.setDescription("Size 9 Shoes");
 		one.setParent(parent);
 		one.setChildren(child);
+		one.setImage("Shoes");
 
-		String tString = "Category{id=2, name='Shoes', description='Size 9 Shoes', parent=[Category{id=7, name='null', description='null', parent=null, children=null}], children=[Category{id=3, name='null', description='null', parent=null, children=null}]}";
+		String tString = "Category{id=2, name='Shoes', description='Size 9 Shoes', image=Shoes, parent=[Category{id=7, name='null', description='null', image=null, parent=null, children=null}], children=[Category{id=3, name='null', description='null', image=null, parent=null, children=null}]}";
 
 		assertTrue(tString.equals(one.toString()));
 

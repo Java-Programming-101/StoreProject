@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigator from './Navigator';
 import Header from './Header';
+import Arrivals from './Arrivals';
 
 class Body extends Component{
     render(){
@@ -14,6 +15,7 @@ class Body extends Component{
             </div>
           </div>
         </div>
+        <Arrivals />
       </div>
 
       )
