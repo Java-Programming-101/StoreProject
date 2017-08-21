@@ -2,33 +2,9 @@ import React, { Component } from 'react';
 import MenuItem from './MenuItem';
 import 'whatwg-fetch';
 
-const API_URL = 'http://localhost:8088';
-const API_HEADERS = {
-    'Content-Type':'application/json',
-    'Authorization':'any-string-you-like' // The authorization is not needed for local server
-};
-
 class Navigator extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { categories: [] };
-    }
-
-    componentDidMount() {
-        fetch(API_URL+'/category/findFirstLevel',{headers:API_HEADERS})
-        .then((response) => response.json())
-        .then((responseData) => {
-          console.log(responseData);
-            this.setState({categories:responseData});
-        })
-        .catch((error) => {
-            console.log('Error fetching and parsing data',error);
-        });
-        
-    }
-
     render() {
-        var categoriesElements = this.state.categories.map((category,index) => {
+        var categoriesElements = this.props.categories.map((category,index) => {
                                     var c = 'color'+(index+2);
                                     return <MenuItem category={category} categoryId={category.id} class={c} caption={category.name} href="#" />
         });
