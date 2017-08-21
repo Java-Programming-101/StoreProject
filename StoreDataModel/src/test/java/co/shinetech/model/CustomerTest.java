@@ -113,7 +113,6 @@ public class CustomerTest {
 	@Test
 	public final void testAddAndGetOrders(){
 		Customer tCustomer = new Customer();
-		long id = 4L;
 		List<Order> orders = new ArrayList<>();
 		List<OrderItem> items = new ArrayList<>();
 		LocalDate orderDate = LocalDate.of(2017, 4, 10);
@@ -126,10 +125,7 @@ public class CustomerTest {
 		tCustomer.addOrders(orders);
 		
 		List<Order> result = tCustomer.getOrdersStream().collect(Collectors.toList());
-		String expected = order.toString() ;
-
-		
-		assertEquals("["+expected+"]",result.toString());
+		assertEquals(orders,result);
 	}
 
 	@Test

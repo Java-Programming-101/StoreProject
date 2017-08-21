@@ -125,12 +125,14 @@ public class OrderItem implements Domain<Long> {
         return (int) (id ^ (id >>> 32));
     }
 
-    /* (non-Javadoc)
-    * @see java.lang.Object#toString()
-    */
     @Override
     public String toString() {
-        return "OrderItem [id=" + id + ", price=" + price + ", qty=" + qty + ", order items total =" + order.getItemsStream().toArray().length + ", productID=" + product.getId()
-                + "]";
+        return "OrderItem{" +
+                "id=" + id +
+                ", price=" + price +
+                ", qty=" + qty +
+                ", order=" + order +
+                ", product=" + product +
+                '}';
     }
 }
