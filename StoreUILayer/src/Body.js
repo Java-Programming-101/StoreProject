@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Navigator from './Navigator';
 import Header from './Header';
 import ImagePanel from './ImagePanel'
+import {getEnvironment} from './Config';
 
-const API_URL = 'http://localhost:8088';
 const API_HEADERS = {
     'Content-Type':'application/json',
     'Authorization':'any-string-you-like' // The authorization is not needed for local server
@@ -16,7 +16,7 @@ class Body extends Component{
     }
 
     componentDidMount() {
-        fetch(API_URL+'/category/findFirstLevel',{headers:API_HEADERS})
+        fetch(getEnvironment().apiURL+'/category/findFirstLevel',{headers:API_HEADERS})
         .then((response) => response.json())
         .then((responseData) => {
           console.log(responseData);
