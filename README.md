@@ -60,6 +60,15 @@ To set up this project you will need the following tools. (we have assumed for t
 - Type "npm install" and wait for that to finish. 
 - Type "npm start" Providing there are no issues you should have an internet browser pop up. (depending on the state of the project a good looking page may or may not show up but your internet browser should definatly open)
 
+# Execute
+- For execute the MIDLEWARE code (Use your IDE, prefferable IntelliJ Idea)
+  - Go to StoreServiceLayer
+  - Go to co.shinetech
+  - Select and run StoreBoot.java that have the main() method
+- For execute the FrontEnd code
+  - Go to the StoreUILayer directory (..\storeapp\StoreUILayer) and open the command line (Windows=cmd)
+  - run the following statement in the command line: npm start
+  - then use a browser on port 3000: http://localhost:3000
 
 # More detail to come, not complete yet. The following section will be padded out with a very basic description and links to useful resources....
 
@@ -73,14 +82,8 @@ To set up this project you will need the following tools. (we have assumed for t
 
 ## Maven
 
-
-
 ## MySql
 
 ## JavaScript
     ### Node Package Manager
     ### React
-
-
-
-
